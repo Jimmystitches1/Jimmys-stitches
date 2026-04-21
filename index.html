@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jimmy's Stitches</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      border-bottom: 1px solid #333;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+    .product {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: 1px solid #fff;
+      color: #fff;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #333;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body><header>
+  <h2>JS</h2>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+  </nav>
+</header><section class="hero">
+  <h1>Build Something That Makes You Successful</h1>
+  <p>Premium Streetwear by Jimmy's Stitches</p>
+</section><section class="products">  <div class="product">
+    <h3>Black Tee</h3>
+    <p>₦8000</p>
+    <button class="btn" onclick="payWithPaystack('Black Tee', 8000)">Buy Now</button>
+    <br>
+    <a class="btn" href="https://wa.me/234XXXXXXXXXX?text=I%20want%20to%20order%20Black%20Tee">Order on WhatsApp</a>
+  </div>  <div class="product">
+    <h3>Hoodie</h3>
+    <p>₦15000</p>
+    <button class="btn" onclick="payWithPaystack('Hoodie', 15000)">Buy Now</button>
+    <br>
+    <a class="btn" href="https://wa.me/234XXXXXXXXXX?text=I%20want%20to%20order%20Hoodie">Order on WhatsApp</a>
+  </div>  <div class="product">
+    <h3>Cap</h3>
+    <p>₦5000</p>
+    <button class="btn" onclick="payWithPaystack('Cap', 5000)">Buy Now</button>
+    <br>
+    <a class="btn" href="https://wa.me/234XXXXXXXXXX?text=I%20want%20to%20order%20Cap">Order on WhatsApp</a>
+  </div></section><footer>
+  <p>© 2026 Jimmy's Stitches</p>
+</footer><script>
+function payWithPaystack(product, amount) {
+  var handler = PaystackPop.setup({
+    key: 'YOUR_PAYSTACK_PUBLIC_KEY',
+    email: 'customer@email.com',
+    amount: amount * 100,
+    currency: 'NGN',
+    callback: function(response) {
+      alert('Payment successful for ' + product + '! Ref: ' + response.reference);
+    },
+    onClose: function() {
+      alert('Transaction cancelled');
+    }
+  });
+  handler.openIframe();
+}
+</script></body>
+</html>
